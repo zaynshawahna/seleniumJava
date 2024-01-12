@@ -1,0 +1,342 @@
+
+
+import org.junit.jupiter.api.AfterEach;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.testng.annotations.Test;
+
+
+
+
+public class optionTest {
+
+    String userName="xxxxx";
+    String pass="xxxx";
+    @Test
+    public void openAAUPportal() throws InterruptedException {
+
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\2023\\IdeaProjects\\drivers\\msedgedriver.exe");//get path of Web driver
+        // WebDrivermManager.Edgedriver().setup();
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");//let the page in maximam size
+        //WebDriver driver1 = new EdgeDriver(options);
+        WebDriver driver = new EdgeDriver(options);
+        //
+        driver.get("https://portal.aaup.edu/faces/ui/login.xhtml");//open edge wed driver
+        //driver.findElement(By.id("lognForm:j_idt17")).sendKeys();
+        //int x=17299495;
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt17")).sendKeys(userName);//enter  username
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt21")).sendKeys(pass);//enter  password
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"lognForm:j_idt27\"]")).click();//click on login button
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt134\"]")).click();//click in conferm buttpn
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"contents:j_idt128\"]")).click();//click in agree button
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" /html/body/div[1]/div[1]/ul/li[1]/a/div[2]")).click();//click on name button
+        Thread.sleep(200);
+        driver.findElement(By.id("j_idt23")).click();//click on logut button
+        Thread.sleep(200);
+        driver.quit();
+
+    }
+
+    @Test(dependsOnMethods = "openAAUPportal")
+
+    public void registrationAAUPportal() throws InterruptedException {
+
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\2023\\IdeaProjects\\drivers\\msedgedriver.exe");
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");
+        WebDriver driver = new EdgeDriver(options);
+        driver.get("https://portal.aaup.edu/faces/ui/login.xhtml");
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt17")).sendKeys(userName);//enter  username
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt21")).sendKeys(pass);//enter  password
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"lognForm:j_idt27\"]")).click();//to login
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt134\"]")).click();//click in conferm buttpn
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"contents:j_idt128\"]")).click();//click in agree button
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"j_idt65\"]/ul/li[1]/a")).click();//home paje
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:j_idt100\"]/a")).click();//registeration
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:j_idt101\"]/a")).click();//registeration
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt126\"]/tbody/tr[1]")).click();//select semester
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt135\"]")).click();//enter registeration
+        Thread.sleep(200);
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        int i = 0;
+        for (; i <= 30; i++) {
+            jsExecutor.executeScript("window.scrollBy(0, " + i + ")");
+            Thread.sleep(100);
+
+
+        }
+        Thread.sleep(200);
+        driver.findElement(By.id("contents:categories")).click();//all catigure
+        Thread.sleep(200);
+        driver.findElement(By.id("contents:categories_5")).click();// catigure 5
+
+        for (; i <= 40; i++) {
+            jsExecutor.executeScript("window.scrollBy(0, " + i + ")");
+            Thread.sleep(100);
+        }
+
+        driver.findElement(By.xpath("//*[@id=\"contents:coursesTable_paginator_top\"]/span[2]/a[3]")).click();// catigure 5
+        Thread.sleep(200);
+
+        for (; i <= 45; i++) {
+            jsExecutor.executeScript("window.scrollBy(0, " + i + ")");
+            Thread.sleep(100);
+        }
+
+        driver.findElement(By.xpath("//*[@id=\"contents:coursesTable:31:j_idt348\"]")).click();// catigure 5
+        Thread.sleep(200);
+
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:sectionsTable_data\"]/tr[1]/td[1]/div/div[2]")).click();// catigure 5
+
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:sectionsTable:enableAdd\"]")).click();// catigure 5
+
+        for (int j = 0; j < 45; j++) {
+            jsExecutor.executeScript("window.scrollBy(0, -45)");
+            Thread.sleep(100);
+        }
+
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" /html/body/div[1]/div[1]/ul/li[1]/a/div[2]")).click();//click on name button
+        Thread.sleep(200);
+        driver.findElement(By.id("j_idt24")).click();//click on logut button
+        Thread.sleep(200);
+        driver.quit();
+
+    }
+
+    @Test(dependsOnMethods = "registrationAAUPportal")
+
+
+    public void studentSchedual() throws InterruptedException {
+
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\2023\\IdeaProjects\\drivers\\msedgedriver.exe");
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");
+        WebDriver driver = new EdgeDriver(options);
+        driver.get("https://portal.aaup.edu/faces/ui/login.xhtml");
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt17")).sendKeys(userName);//enter  username
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt21")).sendKeys(pass);//enter  password
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"lognForm:j_idt27\"]")).click();//click on login
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt134\"]")).click();//click in conferm buttpn
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"contents:j_idt128\"]")).click();//click in agree button
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"j_idt65\"]/ul/li[1]/a")).click();//home paje
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:j_idt68\"]")).click();//acadimic
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:j_idt70\"]")).click();//student schdual
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt122\"]/tbody/tr/td[2]")).click();//drop down lest
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:semesters_1\"]")).click();//select the semester
+        Thread.sleep(200);
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        for (int i = 0; i <= 30; i++) {
+            jsExecutor.executeScript("window.scrollBy(0, " + i + ")");
+            Thread.sleep(100);
+
+
+        }
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" /html/body/div[1]/div[1]/ul/li[1]/a/div[2]")).click();//click on name button
+        Thread.sleep(200);
+        driver.findElement(By.id("j_idt23")).click();//click on logut button
+        Thread.sleep(200);
+        driver.quit();
+
+    }
+
+    @Test(dependsOnMethods = "studentSchedual")
+    public void calcStudentFees() throws InterruptedException {
+
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\2023\\IdeaProjects\\drivers\\msedgedriver.exe");
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");
+        WebDriver driver = new EdgeDriver(options);
+        driver.get("https://portal.aaup.edu/faces/ui/login.xhtml");
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt17")).sendKeys(userName);//enter  username
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt21")).sendKeys(pass);//enter  password
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"lognForm:j_idt27\"]")).click();//click on login
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt134\"]")).click();//click in conferm buttpn
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"contents:j_idt128\"]")).click();//click in agree button
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"j_idt65\"]/ul/li[1]/a")).click();//home paje
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:j_idt68\"]")).click();//acadimic
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:j_idt69\"]/a")).click();//student schdual
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt126\"]/tbody/tr[1]/td[1]/div/div[2]")).click();//drop down lest
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:hours\"]")).sendKeys("14");//select the semester
+        Thread.sleep(200);
+
+        driver.findElement(By.xpath("//*[@id=\"contents:calculateBtn\"]")).click();//select the semester
+        Thread.sleep(200);
+
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        for (int i = 0; i <= 20; i++) {
+            jsExecutor.executeScript("window.scrollBy(0, " + i + ")");
+            Thread.sleep(100);
+
+
+        }
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" /html/body/div[1]/div[1]/ul/li[1]/a/div[2]")).click();//click on name button
+        Thread.sleep(200);
+        driver.findElement(By.id("j_idt23")).click();//click on logut button
+        Thread.sleep(200);
+        driver.quit();
+
+    }
+
+
+    @Test(dependsOnMethods = "studentSchedual")
+
+
+    public void openAAUPPortalAndChickStatistic() throws InterruptedException {
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\2023\\IdeaProjects\\drivers\\msedgedriver.exe");//get path of Web driver
+        // WebDrivermManager.Edgedriver().setup();
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");//let the page in maximam size
+        //WebDriver driver1 = new EdgeDriver(options);
+        WebDriver driver = new EdgeDriver(options);
+        //
+        driver.get("https://portal.aaup.edu/faces/ui/login.xhtml");//open edge wed driver
+        //driver.findElement(By.id("lognForm:j_idt17")).sendKeys();
+        //int x=17299495;
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt17")).sendKeys(userName);//enter  username
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt21")).sendKeys(pass);//enter  password
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"lognForm:j_idt27\"]")).click();//click on login button
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt134\"]")).click();//click in conferm buttpn
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"contents:j_idt128\"]")).click();//click in agree button
+        Thread.sleep(200);
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        for (int i = 0; i <= 65; i++) {
+            jsExecutor.executeScript("window.scrollBy(0, " + i + ")");
+            Thread.sleep(100);
+
+
+        }
+        Thread.sleep(500);
+
+        driver.findElement(By.xpath("//*[@id=\"contents:semestersGPA\"]/table/tbody/tr[1]")).click();
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:semestersGPA\"]/table/tbody/tr[2]")).click();
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:semestersGPA\"]/table/tbody/tr[3]")).click();
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" /html/body/div[1]/div[1]/ul/li[1]/a/div[2]")).click();//click on name button
+        Thread.sleep(200);
+        driver.findElement(By.id("j_idt23")).click();//click on logut button
+        Thread.sleep(200);
+        driver.quit();
+
+    }
+
+    @Test(dependsOnMethods = "openAAUPPortalAndChickStatistic")
+
+    public void themeAAUPportal() throws InterruptedException {
+
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\2023\\IdeaProjects\\drivers\\msedgedriver.exe");
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");
+        WebDriver driver = new EdgeDriver(options);
+        driver.get("https://portal.aaup.edu/faces/ui/login.xhtml");
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt17")).sendKeys(userName);//enter  username
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt21")).sendKeys(pass);//enter  password
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"lognForm:j_idt27\"]")).click();//to login
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt134\"]")).click();//click in conferm buttpn
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"contents:j_idt128\"]")).click();//click in agree button
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"j_idt65\"]/ul/li[1]/a")).click();//home paje
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:um_themes\"]")).click();//theme
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"menu-form:theme1\"]")).click();//select blue amber
+        Thread.sleep(200);
+
+
+        driver.quit();
+
+    }
+    @Test(dependsOnMethods = "themeAAUPportal")
+
+    public void openAAUPportalFail() throws InterruptedException {
+
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\2023\\IdeaProjects\\drivers\\msedgedriver.exe");//get path of Web driver
+        // WebDrivermManager.Edgedriver().setup();
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--start-maximized");//let the page in maximam size
+        //WebDriver driver1 = new EdgeDriver(options);
+        WebDriver driver = new EdgeDriver(options);
+        //
+        driver.get("https://portal.aaup.edu/faces/ui/login.xhtml");//open edge wed driver
+        //driver.findElement(By.id("lognForm:j_idt17")).sendKeys();
+        //int x=17299495;
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt17")).sendKeys(userName);//enter  username
+        Thread.sleep(200);
+        driver.findElement(By.id("lognForm:j_idt21")).sendKeys(pass);//enter  password
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"lognForm:j_idt27\"]")).click();//click on login button
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//*[@id=\"contents:j_idt134\"]")).click();//click in conferm buttpn
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" //*[@id=\"contents:j_idt128\"]")).click();//click in agree button
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" /html/body/div[1]/div[1]/ul/li[1]/a/div[2]")).click();//click on name button
+        Thread.sleep(200);
+        driver.findElement(By.id("j_idt23")).click();//click on logut button
+        Thread.sleep(200);
+        driver.findElement(By.xpath(" /html/body/div[1]/div[1]/ul/li[1]/a/div[2]")).click();//click on name button
+        Thread.sleep(200);
+        driver.findElement(By.id("j_idt23")).click();//click on logut button
+        Thread.sleep(200);
+        driver.quit();
+
+
+    }
+}
